@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoplay Videos Fullscreen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="videoPlayer" autoplay muted playsinline></video>
+
+    <script>
+        // Daftar video
+        const videos = [
+            "videos/video1.mp4",
+            "videos/video2.mp4"
+        ];
+
+        let currentVideo = 0;
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        // Fungsi untuk memutar video berikutnya
+        function playNextVideo() {
+            if (currentVideo < videos.length) {
+                videoPlayer.src = videos[currentVideo];
+                videoPlayer.play();
+                currentVideo++;
+            } else {
+                // Redirect ke halaman lain setelah semua video selesai
+                window.location.href = "file:///C:/xampp/htdocs/proyektor/index.html"; 
+            }
+        }
+
+        // Mainkan video pertama
+        playNextVideo();
+
+        // Pindah ke video berikutnya setelah selesai
+        videoPlayer.addEventListener('ended', playNextVideo);
+    </script>
+
+</body>
+</html>
